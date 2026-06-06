@@ -64,18 +64,18 @@
         <Grid x:Name="RevealOverlay"
               IsVisible="False"
               BackgroundColor="#CC000000"
-              Padding="24">
+              Padding="12">
             <Border Stroke="#5A4A9A"
                     StrokeThickness="1"
                     BackgroundColor="#251A52"
                     Padding="0"
-                    MaximumWidthRequest="340"
+                    HorizontalOptions="Fill"
                     VerticalOptions="Center"
-                    HorizontalOptions="Center"
+                    Margin="0"
                     StrokeShape="RoundRectangle 20">
                 <VerticalStackLayout Spacing="0">
 
-                    <Label Text="Раскрытие раунда"
+                    <Label Text="Секреты раунда"
                            FontSize="17"
                            FontAttributes="Bold"
                            TextColor="White"

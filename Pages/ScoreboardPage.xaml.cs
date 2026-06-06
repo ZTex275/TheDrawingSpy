@@ -11,9 +11,22 @@ public partial class ScoreboardPage : ContentPage
     {
         InitializeComponent();
         _roundSummary = roundSummary;
+
+        if (_roundSummary)
+            NavigationPage.SetHasBackButton(this, false);
+
         BuildTable();
         BuildSpyLog();
         BuildActions();
+    }
+
+    protected override bool OnBackButtonPressed()
+    {
+        // После завершения раунда назад ведёт на сломанный экран выбора исхода.
+        if (_roundSummary)
+            return true;
+
+        return base.OnBackButtonPressed();
     }
 
     private void BuildTable()

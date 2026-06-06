@@ -21,6 +21,11 @@ public partial class RevealPage : ContentPage
         base.OnDisappearing();
     }
 
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
+    }
+
     private void ShowPassScreen()
     {
         var game = App.Game;

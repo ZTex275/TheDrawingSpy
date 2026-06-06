@@ -9,28 +9,33 @@
         <VerticalStackLayout Padding="24" Spacing="20">
 
             <Label Text="🕵️ Рисовальный шпион"
-                   FontSize="30"
+                   FontSize="26"
                    FontAttributes="Bold"
                    TextColor="White"
                    HorizontalOptions="Center"
                    Margin="0,10,0,0" />
 
-            <Label Text="Настройте новую игру"
-                   FontSize="16"
-                   TextColor="#C7BFEA"
-                   HorizontalOptions="Center" />
-
             <Border Stroke="#3A2D6E" StrokeThickness="1" BackgroundColor="#251A52"
                     Padding="18" StrokeShape="RoundRectangle 16">
                 <VerticalStackLayout Spacing="6">
                     <Label Text="Количество игроков" TextColor="White" FontSize="16" FontAttributes="Bold" />
-                    <Grid ColumnDefinitions="*,Auto">
-                        <Label x:Name="PlayersCountLabel" Text="3"
-                               FontSize="26" FontAttributes="Bold"
-                               TextColor="#B9A4FF" VerticalOptions="Center" />
+                    <Label Text="от 3 до 15" TextColor="#8C80BE" FontSize="12" />
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <Entry x:Name="PlayersCountEntry"
+                               Text="5"
+                               Keyboard="Numeric"
+                               FontSize="26"
+                               FontAttributes="Bold"
+                               TextColor="#B9A4FF"
+                               PlaceholderColor="#8C80BE"
+                               MaxLength="2"
+                               VerticalOptions="Center"
+                               Unfocused="OnPlayersCountUnfocused"
+                               Completed="OnPlayersCountCompleted"
+                               TextChanged="OnPlayersCountTextChanged" />
                         <Stepper x:Name="PlayersStepper" Grid.Column="1"
-                                 Minimum="3" Maximum="12" Increment="1" Value="3"
-                                 ValueChanged="OnPlayersChanged" />
+                                 Minimum="3" Maximum="15" Increment="1" Value="5"
+                                 ValueChanged="OnPlayersStepperChanged" />
                     </Grid>
                 </VerticalStackLayout>
             </Border>
@@ -39,20 +44,27 @@
                     Padding="18" StrokeShape="RoundRectangle 16">
                 <VerticalStackLayout Spacing="6">
                     <Label Text="Количество раундов" TextColor="White" FontSize="16" FontAttributes="Bold" />
-                    <Grid ColumnDefinitions="*,Auto">
-                        <Label x:Name="RoundsCountLabel" Text="3"
-                               FontSize="26" FontAttributes="Bold"
-                               TextColor="#B9A4FF" VerticalOptions="Center" />
+                    <Label Text="от 1 до 100" TextColor="#8C80BE" FontSize="12" />
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <Entry x:Name="RoundsCountEntry"
+                               Text="12"
+                               Keyboard="Numeric"
+                               FontSize="26"
+                               FontAttributes="Bold"
+                               TextColor="#B9A4FF"
+                               PlaceholderColor="#8C80BE"
+                               MaxLength="2"
+                               VerticalOptions="Center"
+                               Unfocused="OnRoundsCountUnfocused"
+                               Completed="OnRoundsCountCompleted" />
                         <Stepper x:Name="RoundsStepper" Grid.Column="1"
-                                 Minimum="1" Maximum="30" Increment="1" Value="3"
-                                 ValueChanged="OnRoundsChanged" />
+                                 Minimum="1" Maximum="100" Increment="1" Value="12"
+                                 ValueChanged="OnRoundsStepperChanged" />
                     </Grid>
                 </VerticalStackLayout>
             </Border>
 
             <Label Text="Имена игроков" TextColor="White" FontSize="16" FontAttributes="Bold" Margin="4,4,0,0" />
-            <Label Text="Можно оставить по умолчанию или задать свои."
-                   TextColor="#C7BFEA" FontSize="13" Margin="4,-6,0,0" />
 
             <VerticalStackLayout x:Name="NamesContainer" Spacing="10" />
 

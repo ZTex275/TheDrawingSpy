@@ -1,3 +1,4 @@
+using DrawingSpy.Helpers;
 using DrawingSpy.Models;
 
 namespace DrawingSpy.Pages;
@@ -10,6 +11,12 @@ public partial class OutcomePage : ContentPage
     {
         InitializeComponent();
         HeaderLabel.Text = $"Раунд {App.Game.CurrentRound}: чем закончился?";
+    }
+
+    protected override bool OnBackButtonPressed()
+    {
+        // Нельзя вернуться к раздаче ролей после её завершения.
+        return true;
     }
 
     private Task ApplyAndContinue(RoundOutcome outcome)
@@ -33,7 +40,7 @@ public partial class OutcomePage : ContentPage
     private async void OnRevealContinue(object? sender, EventArgs e)
     {
         RevealOverlay.IsVisible = false;
-        await Navigation.PushAsync(new ScoreboardPage(roundSummary: true));
+        await NavigationHelper.GoToRoundScoreboardAsync(Navigation);
     }
 
     private async void OnSpyFound(object? sender, EventArgs e) => await ApplyAndContinue(RoundOutcome.SpyFound);
