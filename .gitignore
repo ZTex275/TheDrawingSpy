@@ -1,2 +1,8 @@
-bin/
 obj/
+
+# Сборка: игнорировать всё в bin/, кроме APK из Release
+bin/*
+!bin/Release/
+bin/Release/**
+!bin/Release/**/
+!bin/Release/**/*.apk
