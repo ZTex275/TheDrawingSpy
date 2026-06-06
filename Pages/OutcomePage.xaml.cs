@@ -1,5 +1,6 @@
 using DrawingSpy.Helpers;
 using DrawingSpy.Models;
+using DrawingSpy.Services;
 
 namespace DrawingSpy.Pages;
 
@@ -30,6 +31,7 @@ public partial class OutcomePage : ContentPage
         string word = game.CurrentWord;
 
         game.ApplyOutcome(outcome);
+        GameStorage.Save(game);
 
         SpyNameLabel.Text = spyName;
         WordRevealLabel.Text = word;

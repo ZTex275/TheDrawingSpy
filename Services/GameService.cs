@@ -105,4 +105,34 @@ public class GameService
         }
         return sum;
     }
+
+    /// <summary>Создаёт снимок текущего состояния для сохранения.</summary>
+    public SavedGame CreateSnapshot()
+    {
+        return new SavedGame
+        {
+            TotalRounds = TotalRounds,
+            CurrentRound = CurrentRound,
+            PlayerNames = Players.Select(p => p.Name).ToList(),
+            RoundScores = RoundScores.Select(scores => scores.ToArray()).ToList(),
+            SpyPerRound = SpyPerRound.ToList()
+        };
+    }
+
+    /// <summary>Восстанавливает игру из сохранённого снимка.</summary>
+    public void RestoreFromSaved(SavedGame saved)
+    {
+        NewGame(saved.PlayerNames.Count, saved.TotalRounds);
+
+        for (int i = 0; i < saved.PlayerNames.Count; i++)
+            SetPlayerName(i, saved.PlayerNames[i]);
+
+        CurrentRound = saved.CurrentRound;
+        RoundScores.Clear();
+        foreach (var scores in saved.RoundScores)
+            RoundScores.Add(scores);
+
+        SpyPerRound.Clear();
+        SpyPerRound.AddRange(saved.SpyPerRound);
+    }
 }

@@ -1,3 +1,4 @@
+using DrawingSpy.Services;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace DrawingSpy.Pages;
@@ -70,6 +71,7 @@ public partial class PlayersPage : ContentPage
         for (int i = 0; i < _entries.Count; i++)
             game.SetPlayerName(i, _entries[i].Text);
 
+        GameStorage.Save(game);
         await Navigation.PopAsync();
     }
 }

@@ -8,6 +8,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Таблица" Clicked="OnScoreboardClicked" />
         <ToolbarItem Text="Имена" Clicked="OnNamesClicked" />
+        <ToolbarItem Text="Новая игра" Clicked="OnNewGameClicked" />
     </ContentPage.ToolbarItems>
 
     <Grid Padding="24" RowDefinitions="*,Auto">

@@ -5,6 +5,10 @@
              Title="Таблица баллов"
              BackgroundColor="#1B1340">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Новая игра" Clicked="OnNewGameClicked" />
+    </ContentPage.ToolbarItems>
+
     <Grid RowDefinitions="Auto,*,Auto" Padding="16">
 
         <Label x:Name="HeaderLabel"

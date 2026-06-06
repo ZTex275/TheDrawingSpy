@@ -1,3 +1,5 @@
+using DrawingSpy.Helpers;
+
 namespace DrawingSpy.Pages;
 
 public partial class RoundIntroPage : ContentPage
@@ -25,5 +27,10 @@ public partial class RoundIntroPage : ContentPage
     private async void OnNamesClicked(object? sender, EventArgs e)
     {
         await Navigation.PushAsync(new PlayersPage());
+    }
+
+    private async void OnNewGameClicked(object? sender, EventArgs e)
+    {
+        await NavigationHelper.ConfirmAndStartNewGameAsync(this);
     }
 }

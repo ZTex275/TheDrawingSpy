@@ -1,3 +1,6 @@
+using DrawingSpy.Helpers;
+using DrawingSpy.Services;
+
 namespace DrawingSpy.Pages;
 
 public partial class SetupPage : ContentPage
@@ -14,7 +17,28 @@ public partial class SetupPage : ContentPage
     public SetupPage()
     {
         InitializeComponent();
-        BuildNameEntries(ParsePlayersCount(fallback: 5));
+        LoadSavedSettings();
+    }
+
+    private void LoadSavedSettings()
+    {
+        var saved = GameStorage.Load();
+        if (saved is null)
+        {
+            BuildNameEntries(ParsePlayersCount(fallback: 5));
+            return;
+        }
+
+        int players = Math.Clamp(saved.PlayerNames.Count, MinPlayers, MaxPlayers);
+        int rounds = Math.Clamp(saved.TotalRounds, MinRounds, MaxRounds);
+
+        ApplyPlayersCount(players);
+        ApplyRoundsCount(rounds);
+        BuildNameEntries(players, saved.PlayerNames);
+
+        ContinueButton.IsVisible = saved.CanContinue;
+        if (saved.CanContinue)
+            ContinueButton.Text = $"Продолжить игру (раунд {saved.CurrentRound + 1} из {saved.TotalRounds})";
     }
 
     private void OnPlayersStepperChanged(object? sender, ValueChangedEventArgs e)
@@ -99,9 +123,9 @@ public partial class SetupPage : ContentPage
         _syncingRounds = false;
     }
 
-    private void BuildNameEntries(int count)
+    private void BuildNameEntries(int count, IReadOnlyList<string>? savedNames = null)
     {
-        var existing = _nameEntries.Select(en => en.Text).ToList();
+        var existing = savedNames?.ToList() ?? _nameEntries.Select(en => en.Text).ToList();
 
         NamesContainer.Children.Clear();
         _nameEntries.Clear();
@@ -154,6 +178,23 @@ public partial class SetupPage : ContentPage
         }
     }
 
+    private async void OnContinueClicked(object? sender, EventArgs e)
+    {
+        var saved = GameStorage.Load();
+        if (saved is null || !saved.CanContinue)
+        {
+            ContinueButton.IsVisible = false;
+            return;
+        }
+
+        App.Game.RestoreFromSaved(saved);
+        GameStorage.Save(App.Game);
+
+        var roundIntro = new RoundIntroPage();
+        Navigation.InsertPageBefore(roundIntro, this);
+        await Navigation.PopAsync();
+    }
+
     private async void OnStartClicked(object? sender, EventArgs e)
     {
         int playerCount = ParsePlayersCount(fallback: MinPlayers);
@@ -167,6 +208,8 @@ public partial class SetupPage : ContentPage
 
         for (int i = 0; i < playerCount; i++)
             game.SetPlayerName(i, _nameEntries[i].Text);
+
+        GameStorage.Save(game);
 
         var roundIntro = new RoundIntroPage();
         Navigation.InsertPageBefore(roundIntro, this);

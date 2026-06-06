@@ -189,6 +189,8 @@ public partial class ScoreboardPage : ContentPage
             };
             next.Clicked += async (_, _) => await NavigationHelper.GoToNextRoundAsync(Navigation);
             ActionsContainer.Children.Add(next);
+
+            AddNewGameButton();
         }
         else
         {
@@ -226,8 +228,28 @@ public partial class ScoreboardPage : ContentPage
                 HeightRequest = 56,
                 CornerRadius = 14
             };
-            newGame.Clicked += (_, _) => NavigationHelper.GoToNewGame();
+            newGame.Clicked += async (_, _) => await NavigationHelper.ConfirmAndStartNewGameAsync(this);
             ActionsContainer.Children.Add(newGame);
         }
+    }
+
+    private void AddNewGameButton()
+    {
+        var newGame = new Button
+        {
+            Text = "Новая игра",
+            BackgroundColor = Color.FromArgb("#3A2D6E"),
+            TextColor = Colors.White,
+            FontSize = 16,
+            HeightRequest = 48,
+            CornerRadius = 12
+        };
+        newGame.Clicked += async (_, _) => await NavigationHelper.ConfirmAndStartNewGameAsync(this);
+        ActionsContainer.Children.Add(newGame);
+    }
+
+    private async void OnNewGameClicked(object? sender, EventArgs e)
+    {
+        await NavigationHelper.ConfirmAndStartNewGameAsync(this);
     }
 }
