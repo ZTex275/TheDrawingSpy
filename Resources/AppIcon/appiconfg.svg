@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="456" height="456" viewBox="0 0 456 456" xmlns="http://www.w3.org/2000/svg">
+  <!-- Шляпа -->
+  <ellipse cx="228" cy="168" rx="98" ry="22" fill="#FFFFFF"/>
+  <path d="M178 168 Q178 108 228 98 Q278 108 278 168 Z" fill="#FFFFFF"/>
+
+  <!-- Лицо -->
+  <circle cx="228" cy="228" r="58" fill="#FFFFFF"/>
+
+  <!-- Пальто -->
+  <path d="M148 286 Q148 248 188 238 L268 238 Q308 248 308 286 L308 340 Q228 360 148 340 Z" fill="#FFFFFF"/>
+
+  <!-- Воротник -->
+  <path d="M188 238 L228 268 L268 238 L248 248 L228 258 L208 248 Z" fill="#E8E0FF"/>
+
+  <!-- Карандаш -->
+  <rect x="286" y="248" width="18" height="92" rx="4" transform="rotate(35 295 294)" fill="#FFD166"/>
+  <polygon points="318,214 332,228 302,258 288,244" fill="#FF8A8A" transform="rotate(35 310 236)"/>
+
+  <!-- Линия рисунка -->
+  <path d="M118 318 Q148 298 168 308 T208 318 T248 302" fill="none" stroke="#B9A4FF" stroke-width="10" stroke-linecap="round"/>
+</svg>

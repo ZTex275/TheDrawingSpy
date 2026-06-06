@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DrawingSpy.Pages.ScoreboardPage"
+             Title="Таблица баллов"
+             BackgroundColor="#1B1340">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="16">
+
+        <Label x:Name="HeaderLabel"
+               Grid.Row="0"
+               Text="Таблица баллов"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center"
+               Margin="0,4,0,12" />
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="16">
+                <ScrollView Orientation="Horizontal">
+                    <Grid x:Name="TableGrid" RowSpacing="1" ColumnSpacing="1" />
+                </ScrollView>
+
+                <Border Stroke="#3A2D6E" StrokeThickness="1" BackgroundColor="#251A52"
+                        Padding="14" StrokeShape="RoundRectangle 12">
+                    <VerticalStackLayout x:Name="SpyLog" Spacing="6" />
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout x:Name="ActionsContainer" Grid.Row="2" Spacing="10" Margin="0,12,0,0" />
+    </Grid>
+</ContentPage>

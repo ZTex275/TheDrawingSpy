@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DrawingSpy.Pages.RoundIntroPage"
+             Title="Раунд"
+             BackgroundColor="#1B1340">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Таблица" Clicked="OnScoreboardClicked" />
+        <ToolbarItem Text="Имена" Clicked="OnNamesClicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid Padding="24" RowDefinitions="*,Auto">
+        <VerticalStackLayout Grid.Row="0" Spacing="16" VerticalOptions="Center">
+            <Label x:Name="RoundLabel"
+                   Text="Раунд 1"
+                   FontSize="40"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center" />
+
+            <Label x:Name="RoundSubLabel"
+                   Text="из 3"
+                   FontSize="20"
+                   TextColor="#C7BFEA"
+                   HorizontalOptions="Center" />
+
+            <Border Stroke="#3A2D6E" StrokeThickness="1" BackgroundColor="#251A52"
+                    Padding="20" StrokeShape="RoundRectangle 16" Margin="0,20,0,0">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Как играть"
+                           FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label TextColor="#D8D2F0" FontSize="15"
+                           Text="• Телефон передаётся игрокам по очереди." />
+                    <Label TextColor="#D8D2F0" FontSize="15"
+                           Text="• Каждый увидит одно и то же загаданное слово и должен его запомнить." />
+                    <Label TextColor="#D8D2F0" FontSize="15"
+                           Text="• Один игрок случайно станет ШПИОНОМ — он слова не узнает." />
+                    <Label TextColor="#D8D2F0" FontSize="15"
+                           Text="• Затем все рисуют, обсуждают и пытаются вычислить шпиона." />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+
+        <Button Grid.Row="1"
+                Text="Начать раздачу слов"
+                Clicked="OnStartRoundClicked"
+                BackgroundColor="#7C4DFF"
+                TextColor="White"
+                FontSize="18"
+                FontAttributes="Bold"
+                HeightRequest="56"
+                CornerRadius="14"
+                Margin="0,16,0,10" />
+    </Grid>
+</ContentPage>
